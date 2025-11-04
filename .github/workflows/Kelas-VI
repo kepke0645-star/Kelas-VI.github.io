@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas VI - SD Negeri Pojok 01</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === VARIABLES === */
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --accent: #4a7bff;
+            --light: #f0f8ff;
+            --dark: #333;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        /* === BASE STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER === */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            border: 3px solid white;
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+
+        /* === NAVIGATION === */
+        nav {
+            background-color: var(--secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* === SECTIONS === */
+        section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* === STUDENTS GRID === */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .student-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e6f0ff;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .student-card:hover {
+            background-color: #d4e4ff;
+            transform: scale(1.03);
+        }
+
+        .student-number {
+            background-color: var(--accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+
+        /* === STRUCTURE STYLES === */
+        .structure-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .structure-category {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .position-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .position-item:last-child {
+            border-bottom: none;
+        }
+
+        .position-name {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .position-holder {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .leader-badge {
+            background-color: var(--warning);
+            color: var(--dark);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .teacher-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* === SUBJECTS GRID === */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            padding: 20px;
+            border-radius: 8px;
+            background: linear-gradient(to bottom right, var(--accent), var(--secondary));
+            color: white;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* === SCHEDULE STYLES === */
+        .schedule-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .schedule-table th {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: #f8fbff;
+        }
+
+        .schedule-table tr:hover {
+            background-color: #e6f0ff;
+        }
+
+        .time-header {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .day-header {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .break-row {
+            background-color: #ffeeba !important;
+            font-weight: bold;
+        }
+
+        .subject-cell {
+            font-weight: 500;
+        }
+
+        /* === CONTACT STYLES === */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tiktok-icon {
+            color: #000000;
+        }
+
+        /* === SIGNATURE STYLES === */
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .signature {
+            text-align: center;
+            width: 45%;
+        }
+
+        .signature p {
+            margin: 20px 0 40px;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .signature-line {
+            width: 80%;
+            height: 1px;
+            background-color: var(--dark);
+            margin: 0 auto;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* === MODAL STYLES === */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .modal-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* === TO TOP BUTTON === */
+        .to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* === RESPONSIVE STYLES === */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .students-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .schedule-table {
+                font-size: 0.8rem;
+            }
+            
+            .schedule-table th, .schedule-table td {
+                padding: 8px 5px;
+            }
+            
+            .signature-section {
+                flex-direction: column;
+            }
+            
+            .signature {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .structure-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info {
+                text-align: center;
+            }
+            
+            .to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Website Kelas VI</h1>
+            <p>Tahun Pelajaran 2025 - 2026</p>
+            <div class="profile">
+                <div class="profile-img">YI</div>
+                <div class="profile-info">
+                    <h2>Yuli Irawati S.Pd</h2>
+                    <p>Wali Kelas VI</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#siswa">Data Siswa</a></li>
+                <li><a href="#pengurus">Pengurus Kelas</a></li>
+                <li><a href="#mapel">Mata Pelajaran</a></li>
+                <li><a href="#jadwal">Jadwal Pelajaran</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="beranda">
+            <div class="container">
+                <h2 class="section-title">Tentang Kelas Kami</h2>
+                <div class="card">
+                    <p>Kelas VI terdiri dari 13 siswa yang aktif dan bersemangat dalam belajar. Dengan bimbingan Ibu Yuli Irawati S.Pd sebagai wali kelas, kami berkomitmen untuk mencapai prestasi terbaik baik dalam akademik maupun non-akademik.</p>
+                    <p>Di kelas ini, kami belajar 9 mata pelajaran yang berbeda untuk mengembangkan pengetahuan dan keterampilan kami secara menyeluruh.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Students Section -->
+        <section id="siswa">
+            <div class="container">
+                <h2 class="section-title">Data Siswa</h2>
+                <div class="students-grid">
+                    <div class="student-card" data-name="Adin" data-number="1">
+                        <div class="student-number">1</div>
+                        <h3>Adin</h3>
+                    </div>
+                    <div class="student-card" data-name="Ahmad" data-number="2">
+                        <div class="student-number">2</div>
+                        <h3>Ahmad</h3>
+                    </div>
+                    <div class="student-card" data-name="Anggun" data-number="3">
+                        <div class="student-number">3</div>
+                        <h3>Anggun</h3>
+                    </div>
+                    <div class="student-card" data-name="Calvin" data-number="4">
+                        <div class="student-number">4</div>
+                        <h3>Calvin</h3>
+                    </div>
+                    <div class="student-card" data-name="Gevan" data-number="5">
+                        <div class="student-number">5</div>
+                        <h3>Gevan</h3>
+                    </div>
+                    <div class="student-card" data-name="Dzaky" data-number="6">
+                        <div class="student-number">6</div>
+                        <h3>Dzaky</h3>
+                    </div>
+                    <div class="student-card" data-name="Rahma" data-number="7">
+                        <div class="student-number">7</div>
+                        <h3>Rahma</h3>
+                    </div>
+                    <div class="student-card" data-name="Rizqon" data-number="8">
+                        <div class="student-number">8</div>
+                        <h3>Rizqon</h3>
+                    </div>
+                    <div class="student-card" data-name="Najwa" data-number="9">
+                        <div class="student-number">9</div>
+                        <h3>Najwa</h3>
+                    </div>
+                    <div class="student-card" data-name="Nasya" data-number="10">
+                        <div class="student-number">10</div>
+                        <h3>Nasya</h3>
+                    </div>
+                    <div class="student-card" data-name="Riqza" data-number="11">
+                        <div class="student-number">11</div>
+                        <h3>Riqza</h3>
+                    </div>
+                    <div class="student-card" data-name="Nia" data-number="12">
+                        <div class="student-number">12</div>
+                        <h3>Nia</h3>
+                    </div>
+                    <div class="student-card" data-name="Via" data-number="13">
+                        <div class="student-number">13</div>
+                        <h3>Via</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Structure Section -->
+        <section id="pengurus">
+            <div class="container">
+                <h2 class="section-title">Struktur Pengurus Kelas</h2>
+                <div class="structure-container">
+                    <div class="structure-category">
+                        <h3>Wali Kelas</h3>
+                        <div class="position-item">
+                            <span class="position-name">Wali Kelas</span>
+                            <span class="position-holder">Bu Yuli <span class="teacher-badge">Guru</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-category">
+                        <h3>Ketua & Wakil</h3>
+                        <div class="position-item">
+                            <span class="position-name">Ketua Kelas</span>
+                            <span class="position-holder">Nasya <span class="leader-badge">Ketua</span></span>
+                        </div>
+                        <div class="position-item">
+                            <span class="position-name">Wakil Ketua</span>
+                            <span class="position-holder">Adin</span>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-category">
+                        <h3>Sekretaris & Bendahara</h3>
+                        <div class="position-item">
+                            <span class="position-name">Sekretaris</span>
+                            <span class="position-holder">Anggun</span>
+                        </div>
+                        <div class="position-item">
+                            <span class="position-name">Bendahara</span>
+                            <span class="position-holder">Najwa</span>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-category">
+                        <h3>Sie Bidang Kesiswaan</h3>
+                        <div class="position-item">
+                            <span class="position-name">Sie Keamanan</span>
+                            <span class="position-holder">Gevan</span>
+                        </div>
+                        <div class="position-item">
+                            <span class="position-name">Sie Kebersihan</span>
+                            <span class="position-holder">Via</span>
+                        </div>
+                        <div class="position-item">
+                            <span class="position-name">Sie Keagamaan</span>
+                            <span class="position-holder">Ahmad</span>
+                        </div>
+                        <div class="position-item">
+                            <span class="position-name">Sie Ketertiban</span>
+                            <span class="position-holder">Nia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subjects Section -->
+        <section id="mapel">
+            <div class="container">
+                <h2 class="section-title">Mata Pelajaran</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card" data-subject="BINA">
+                        <div class="subject-icon">📚</div>
+                        <h3>BINA</h3>
+                    </div>
+                    <div class="subject-card" data-subject="IPAS">
+                        <div class="subject-icon">🔬</div>
+                        <h3>IPAS</h3>
+                    </div>
+                    <div class="subject-card" data-subject="PJOK">
+                        <div class="subject-icon">⚽</div>
+                        <h3>PJOK</h3>
+                    </div>
+                    <div class="subject-card" data-subject="PAI">
+                        <div class="subject-icon">🙏</div>
+                        <h3>PAI</h3>
+                    </div>
+                    <div class="subject-card" data-subject="MTK">
+                        <div class="subject-icon">🧮</div>
+                        <h3>MTK</h3>
+                    </div>
+                    <div class="subject-card" data-subject="B. JAWA">
+                        <div class="subject-icon">🇮🇩</div>
+                        <h3>B. JAWA</h3>
+                    </div>
+                    <div class="subject-card" data-subject="B. INGGRIS">
+                        <div class="subject-icon">🇬🇧</div>
+                        <h3>B. INGGRIS</h3>
+                    </div>
+                    <div class="subject-card" data-subject="P. PANCASILA">
+                        <div class="subject-icon">🏛️</div>
+                        <h3>P. PANCASILA</h3>
+                    </div>
+                    <div class="subject-card" data-subject="SENI RUPA">
+                        <div class="subject-icon">🎨</div>
+                        <h3>SENI RUPA</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="jadwal">
+            <div class="container">
+                <h2 class="section-title">Jadwal Pelajaran</h2>
+                <div class="card">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary);">JADWAL PELAJARAN KELAS VI</h3>
+                    <p style="text-align: center; margin-bottom: 20px;">Tahun Pelajaran 2025 - 2026</p>
+                    
+                    <div class="schedule-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th class="time-header">JP</th>
+                                    <th class="time-header">WAKTU</th>
+                                    <th class="day-header">SENIN</th>
+                                    <th class="day-header">SELASA</th>
+                                    <th class="day-header">RABU</th>
+                                    <th class="day-header">KAMIS</th>
+                                    <th class="day-header">JUMAT</th>
+                                    <th class="day-header">SABTU</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>07:00 – 07:35</td>
+                                    <td>UPACARA</td>
+                                    <td>PEMBIASAAN</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>07:35 – 08:10</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">PJOK</td>
+                                    <td class="subject-cell">PAI</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">B. JAWA</td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>08:10 – 08:45</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">PJOK</td>
+                                    <td class="subject-cell">PAI</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">B. JAWA</td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>08:45 – 09:20</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">PJOK</td>
+                                    <td class="subject-cell">PAI</td>
+                                    <td class="subject-cell">BINA</td>
+                                    <td class="subject-cell">B. JAWA</td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr class="break-row">
+                                    <td colspan="8">09:20 – 09:35 ISTIRAHAT</td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td>09:35 – 10:10</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td class="subject-cell">PJOK</td>
+                                    <td class="subject-cell">PAI</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">B. INGGRIS</td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr>
+                                    <td>5.</td>
+                                    <td>10:10 – 10:45</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td class="subject-cell">P.PANCASILA</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">B. INGGRIS</td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr>
+                                    <td>6.</td>
+                                    <td>10:45 – 11:20</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td class="subject-cell">P.PANCASILA</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td></td>
+                                    <td class="subject-cell">EKSTRA</td>
+                                </tr>
+                                <tr>
+                                    <td>7.</td>
+                                    <td>11:20 – 11:55</td>
+                                    <td class="subject-cell">SENI RUPA</td>
+                                    <td class="subject-cell">P.PANCASILA</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>8.</td>
+                                    <td>11:55 – 12:30</td>
+                                    <td class="subject-cell">SENI RUPA</td>
+                                    <td class="subject-cell">P.PANCASILA</td>
+                                    <td class="subject-cell">MTK</td>
+                                    <td class="subject-cell">IPAS</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="break-row">
+                                    <td colspan="8">12:30 – 13:00 ISHOMA</td>
+                                </tr>
+                                <tr>
+                                    <td>9.</td>
+                                    <td>13:00 – 14:00</td>
+                                    <td class="subject-cell">MADIN</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="signature-section">
+                        <div class="signature">
+                            <p>Mengetahui</p>
+                            <p>Kepala UPT SD/Negeri Pojok 01</p>
+                            <div class="signature-line"></div>
+                            <p class="signature-name">ROFIO ALFA HUMADA, M.Pd</p>
+                            <p>NIP: 19851224 200901 2 001</p>
+                        </div>
+                        <div class="signature">
+                            <p>Pojok, 14 Juli 2025</p>
+                            <p>Wali Kelas VI</p>
+                            <div class="signature-line"></div>
+                            <p class="signature-name">YULI IRAWATI, S.Pd</p>
+                            <p>NIP: 19880711 202221 2 012</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="kontak">
+            <div class="container">
+                <h2 class="section-title">Kontak</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon tiktok-icon"><i class="fab fa-tiktok"></i></div>
+                        <h3>TikTok</h3>
+                        <p>@ibun_yuli</p>
+                        <button class="btn-copy" data-text="@ibun_yuli">Salin</button>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <h3>Telepon</h3>
+                        <p>+62 852-3321-1277</p>
+                        <button class="btn-copy" data-text="+6285233211277">Salin</button>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>Alamat Sekolah</h3>
+                        <p>W5CX+M9M, Kranggan, Pojok, Kec. Garum, Kabupaten Blitar, Jawa Timur 66182</p>
+                        <button class="btn-copy" data-text="W5CX+M9M, Kranggan, Pojok, Kec. Garum, Kabupaten Blitar, Jawa Timur 66182">Salin</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Website Kelas VI - Wali Kelas Yuli Irawati S.Pd. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Student Details -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title" id="modalStudentName">Detail Siswa</h3>
+            <div id="modalStudentContent">
+                <!-- Content will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Subject Details -->
+    <div class="modal" id="subjectModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title" id="modalSubjectName">Detail Mata Pelajaran</h3>
+            <div id="modalSubjectContent">
+                <!-- Content will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="to-top" id="toTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // === JAVASCRIPT FUNCTIONALITY ===
+
+        // DOM Elements
+        const studentCards = document.querySelectorAll('.student-card');
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const studentModal = document.getElementById('studentModal');
+        const subjectModal = document.getElementById('subjectModal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const toTopButton = document.getElementById('toTop');
+        const copyButtons = document.querySelectorAll('.btn-copy');
+
+        // Student data for modal
+        const studentData = {
+            'Adin': {
+                number: 1,
+                position: 'Wakil Ketua Kelas',
+                birthDate: '15 Maret 2014',
+                hobby: 'Membaca dan Olahraga'
+            },
+            'Ahmad': {
+                number: 2,
+                position: 'Sie Keagamaan',
+                birthDate: '22 Mei 2014',
+                hobby: 'Mengaji dan Sepak Bola'
+            },
+            'Anggun': {
+                number: 3,
+                position: 'Sekretaris',
+                birthDate: '10 Juli 2014',
+                hobby: 'Menulis dan Melukis'
+            },
+            'Calvin': {
+                number: 4,
+                position: 'Siswa',
+                birthDate: '5 November 2014',
+                hobby: 'Matematika dan Robotik'
+            },
+            'Gevan': {
+                number: 5,
+                position: 'Sie Keamanan',
+                birthDate: '18 September 2014',
+                hobby: 'Bela Diri dan Berenang'
+            },
+            'Dzaky': {
+                number: 6,
+                position: 'Siswa',
+                birthDate: '3 Februari 2014',
+                hobby: 'Fotografi dan Komputer'
+            },
+            'Rahma': {
+                number: 7,
+                position: 'Siswa',
+                birthDate: '30 April 2014',
+                hobby: 'Menyanyi dan Menari'
+            },
+            'Rizqon': {
+                number: 8,
+                position: 'Siswa',
+                birthDate: '12 Agustus 2014',
+                hobby: 'Sepak Bola dan Basket'
+            },
+            'Najwa': {
+                number: 9,
+                position: 'Bendahara',
+                birthDate: '25 Desember 2014',
+                hobby: 'Memasak dan Berkebun'
+            },
+            'Nasya': {
+                number: 10,
+                position: 'Ketua Kelas',
+                birthDate: '8 Juni 2014',
+                hobby: 'Membaca dan Public Speaking'
+            },
+            'Riqza': {
+                number: 11,
+                position: 'Siswa',
+                birthDate: '14 Oktober 2014',
+                hobby: 'Melukis dan Musik'
+            },
+            'Nia': {
+                number: 12,
+                position: 'Sie Ketertiban',
+                birthDate: '20 Januari 2014',
+                hobby: 'Menulis dan Membaca'
+            },
+            'Via': {
+                number: 13,
+                position: 'Sie Kebersihan',
+                birthDate: '7 Maret 2014',
+                hobby: 'Kerajinan Tangan dan Menyanyi'
+            }
+        };
+
+        // Subject data for modal
+        const subjectData = {
+            'BINA': {
+                description: 'Bina adalah mata pelajaran yang fokus pada pengembangan kemampuan dasar membaca, menulis, dan berhitung.',
+                teacher: 'Bu Yuli',
+                schedule: 'Senin, Kamis'
+            },
+            'IPAS': {
+                description: 'Ilmu Pengetahuan Alam dan Sosial mengajarkan tentang fenomena alam dan kehidupan sosial di sekitar kita.',
+                teacher: 'Bu Sari',
+                schedule: 'Senin, Rabu, Kamis'
+            },
+            'PJOK': {
+                description: 'Pendidikan Jasmani, Olahraga, dan Kesehatan untuk menjaga kebugaran tubuh dan kesehatan.',
+                teacher: 'Pak Budi',
+                schedule: 'Selasa, Rabu'
+            },
+            'PAI': {
+                description: 'Pendidikan Agama Islam untuk membentuk karakter dan akhlak mulia berdasarkan nilai-nilai agama.',
+                teacher: 'Bu Aminah',
+                schedule: 'Rabu, Kamis'
+            },
+            'MTK': {
+                description: 'Matematika mengasah kemampuan logika, analisis, dan pemecahan masalah.',
+                teacher: 'Bu Yuli',
+                schedule: 'Kamis, Jumat'
+            },
+            'B. JAWA': {
+                description: 'Bahasa Jawa untuk melestarikan budaya dan bahasa daerah Jawa Timur.',
+                teacher: 'Bu Sri',
+                schedule: 'Senin, Jumat'
+            },
+            'B. INGGRIS': {
+                description: 'Bahasa Inggris untuk penguasaan bahasa internasional dan komunikasi global.',
+                teacher: 'Bu Dian',
+                schedule: 'Jumat'
+            },
+            'P. PANCASILA': {
+                description: 'Pendidikan Pancasila untuk menanamkan nilai-nilai luhur bangsa Indonesia.',
+                teacher: 'Pak Rudi',
+                schedule: 'Selasa, Rabu'
+            },
+            'SENI RUPA': {
+                description: 'Seni Rupa untuk mengembangkan kreativitas dan apresiasi terhadap karya seni.',
+                teacher: 'Bu Lina',
+                schedule: 'Senin, Kamis'
+            }
+        };
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Student card click events
+            studentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const studentName = this.getAttribute('data-name');
+                    openStudentModal(studentName);
+                });
+            });
+
+            // Subject card click events
+            subjectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const subjectName = this.getAttribute('data-subject');
+                    openSubjectModal(subjectName);
+                });
+            });
+
+            // Close modal events
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    studentModal.style.display = 'none';
+                    subjectModal.style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === studentModal) {
+                    studentModal.style.display = 'none';
+                }
+                if (event.target === subjectModal) {
+                    subjectModal.style.display = 'none';
+                }
+            });
+
+            // Back to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    toTopButton.classList.add('show');
+                } else {
+                    toTopButton.classList.remove('show');
+                }
+            });
+
+            toTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Copy button functionality
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const textToCopy = this.getAttribute('data-text');
+                    copyToClipboard(textToCopy);
+                    
+                    // Visual feedback
+                    const originalText = this.textContent;
+                    this.textContent = 'Tersalin!';
+                    this.style.backgroundColor = 'var(--success)';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.backgroundColor = '';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Functions
+        function openStudentModal(studentName) {
+            const data = studentData[studentName];
+            const modalTitle = document.getElementById('modalStudentName');
+            const modalContent = document.getElementById('modalStudentContent');
+            
+            modalTitle.textContent = `Detail Siswa: ${studentName}`;
+            modalContent.innerHTML = `
+                <p><strong>No. Absen:</strong> ${data.number}</p>
+                <p><strong>Jabatan:</strong> ${data.position}</p>
+                <p><strong>Tanggal Lahir:</strong> ${data.birthDate}</p>
+                <p><strong>Hobi:</strong> ${data.hobby}</p>
+                <div style="margin-top: 20px; padding: 10px; background-color: #f0f8ff; border-radius: 5px;">
+                    <p><strong>Catatan:</strong> ${studentName} adalah siswa yang aktif dan berprestasi di Kelas VI.</p>
+                </div>
+            `;
+            
+            studentModal.style.display = 'flex';
+        }
+
+        function openSubjectModal(subjectName) {
+            const data = subjectData[subjectName];
+            const modalTitle = document.getElementById('modalSubjectName');
+            const modalContent = document.getElementById('modalSubjectContent');
+            
+            modalTitle.textContent = `Detail Mata Pelajaran: ${subjectName}`;
+            modalContent.innerHTML = `
+                <p><strong>Deskripsi:</strong> ${data.description}</p>
+                <p><strong>Pengajar:</strong> ${data.teacher}</p>
+                <p><strong>Jadwal:</strong> ${data.schedule}</p>
+                <div style="margin-top: 20px; padding: 10px; background-color: #f0f8ff; border-radius: 5px;">
+                    <p><strong>Informasi:</strong> Mata pelajaran ini termasuk dalam kurikulum kelas VI sesuai dengan standar pendidikan nasional.</p>
+                </div>
+            `;
+            
+            subjectModal.style.display = 'flex';
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        // Add some styling for copy buttons
+        const style = document.createElement('style');
+        style.textContent = `
+            .btn-copy {
+                background-color: var(--accent);
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 10px;
+                transition: background-color 0.3s;
+            }
+            
+            .btn-copy:hover {
+                background-color: var(--secondary);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
